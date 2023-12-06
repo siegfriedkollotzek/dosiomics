@@ -1,3 +1,6 @@
+from django.shortcuts import render
+from datetime import datetime, time
+
 def home(request):
     return render(request, 'home.html')
 
