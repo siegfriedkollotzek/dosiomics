@@ -77,6 +77,31 @@
             text-align: center;
             padding: 10px 0;
         }
+        .button-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 20px; /* Adjust the space between buttons */
+        }
+
+        .image-button {
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            padding: 0;
+        }
+
+        .image-button img {
+            width: 200px; /* Adjust the width as needed */
+            height: auto;
+            display: block;
+        }
+
+        /* Optional: Add styles for hover effect */
+        .image-button:hover {
+            transform: scale(1.1);
+        }
+
     </style>
 </head>
 <body>
@@ -104,9 +129,15 @@
                     <h2>Sigi</h2>
                     <p></p>
                 </section>
-
-
             </div>
+                <div class="button-container">
+                    <button class="image-button" id="button1">
+                    <img src="static/button1.png" alt="Button Image 1">
+                    </button>
+                    <button class="image-button" id="button2">
+                    <img src="static/button2.png" alt="Button Image 2">
+                    </button>
+                </div>
         </div>
 
         <footer>
