@@ -101,6 +101,16 @@
         .image-button:hover {
             transform: scale(1.1);
         }
+        .video-container {
+            width: 100%; /* Adjust this to fit your website's layout */
+            max-width: 1280px; /* Maximum size */
+            margin: auto; /* Center the container */
+            overflow: hidden; /* Ensures no overflow from the video */
+        }
+        .video-container video {
+            width: 100%; /* Make the video fill the container */
+            height: auto; /* Keep the aspect ratio */
+        }
 
     </style>
 </head>
@@ -113,9 +123,12 @@
             </header>
 
             <div class="container">
-                <video id="video" controls>
-                    <source src="/static/test.mp4" type="video/mp4">
-                </video>
+
+                <div class="video-container">
+                  <video id="video" controls>
+                    <source src="/static/resized_video.mp4" type="video/mp4">
+                  </video>
+                </div>
 
 
                 <div class="chapter-overview">
