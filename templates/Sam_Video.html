@@ -113,23 +113,24 @@
             </header>
 
             <div class="container">
-                <video controls>
+                <video id="video" controls>
                     <source src="/static/test.mp4" type="video/mp4">
                 </video>
 
 
                 <div class="chapter-overview">
-                <h2>Chapter Overview</h2>
-                <ul>
-                    <li><a href="#chapter1">Chapter 1: Introduction (00:00)</a></li>
-                    <li><a href="#chapter2">Chapter 2: Tools Overview (05:12)</a></li>
-                    <li><a href="#chapter3">Chapter 3: Analysis Techniques (12:45)</a></li>
-                    <li><a href="#chapter4">Chapter 4: Conclusion (22:30)</a></li>
-                </ul>
+                    <h2>Chapter Overview</h2>
+                    <ul>
+                        <li><a href="javascript:void(0);" onclick="setVideoTime(109)">Chapter 1: Warum empfehlen wir eine Bestrahlung (01:49)</a></li>
+                        <li><a href="javascript:void(0);" onclick="setVideoTime(154)">Chapter 2: Vorbereitungen für die Bestrahlung (02:34)</a></li>
+                        <li><a href="javascript:void(0);" onclick="setVideoTime(237)">Chapter 3: Allgemeiner Ablauf (03:57)</a></li>
+                        <li><a href="javascript:void(0);" onclick="setVideoTime(332)">Chapter 4: Nebenwirkungen (05:32)</a></li>
+                        <li><a href="javascript:void(0);" onclick="setVideoTime(599)">Chapter 5: Nachsorge / wie es weitergeht (09:59)</a></li>
+                    </ul>
                 </div>
 
             </div>
-                        <!-- Chapter Overview with Timestamps -->
+
 
         </div>
 
@@ -137,5 +138,13 @@
             <p>&copy; 2023 Dosiomics Team</p>
         </footer>
     </div>
+
+<script>
+    function setVideoTime(seconds) {
+        var video = document.getElementById('video');
+        video.currentTime = seconds;
+        video.play();
+    }
+</script>
 </body>
 </html>
