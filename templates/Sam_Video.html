@@ -53,7 +53,7 @@
             padding: 20px;
             border-radius: 10px; /* Optional rounded corners */
             color: white; /* Text color */
-            text-align: center;
+            text-align: left;
         }
 
         section {
@@ -77,12 +77,6 @@
             text-align: center;
             padding: 10px 0;
         }
-        .button-container {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 20px; /* Adjust the space between buttons */
-        }
 
         .image-button {
             border: none;
@@ -97,13 +91,10 @@
             display: block;
         }
 
-        /* Optional: Add styles for hover effect */
-        .image-button:hover {
-            transform: scale(1.1);
-        }
+
         .video-container {
             width: 100%; /* Adjust this to fit your website's layout */
-            max-width: 1280px; /* Maximum size */
+            max-width: 640px; /* Maximum size */
             margin: auto; /* Center the container */
             overflow: hidden; /* Ensures no overflow from the video */
         }
@@ -117,15 +108,29 @@
             background-color: #007bff; /* Blue */
             color: white;
             border: none;
-            padding: 10px 20px;
+            padding: 10px 10px;
             margin: 0 5px; /* Adjust space between buttons */
             border-radius: 5px;
             cursor: pointer;
             transition: background-color 0.3s ease;
+            text-align: left;
+            font-size: large;
         }
 
         .button-container button:hover {
             background-color: #0056b3; /* Darker blue */
+        }
+        .video-and-button-container {
+            display: flex;
+            flex-direction: row; /* Aligns children (button-container and video-container) in a row */
+            align-items: start; /* Aligns items at the start of the container */
+            gap: 10px; /* Adjust the space between the button-container and the video-container */
+        }
+
+        .button-container {
+            display: flex;
+            flex-direction: column; /* Aligns buttons vertically */
+            gap: 40px; /* Adjust the space between buttons */
         }
     </style>
 </head>
@@ -133,20 +138,14 @@
     <div class="wrapper">
         <div class="content">
             <header>
-                <h1>Aufklärungsvideo </h1>
-                <p>Information zu Radioonko</p>
+                <p>Information Mammakarzinom</p>
             </header>
 
+
+
             <div class="container">
-
-                <div class="video-container">
-                  <video id="video" controls>
-                    <source src="/static/resized_video.mp4" type="video/mp4">
-                  </video>
-                </div>
-
-
-                <div class="chapter-overview">
+                <!-- New flex container for video and buttons -->
+                <div class="video-and-button-container">
                     <div class="button-container">
                         <button onclick="setVideoTime(109)">1: Warum empfehlen wir eine Bestrahlung (01:49)</button>
                         <button onclick="setVideoTime(154)">2: Vorbereitungen für die Bestrahlung (02:34)</button>
@@ -154,11 +153,14 @@
                         <button onclick="setVideoTime(332)">4: Nebenwirkungen (05:32)</button>
                         <button onclick="setVideoTime(599)">5: Nachsorge / wie es weitergeht (09:59)</button>
                     </div>
+
+                    <div class="video-container">
+                        <video id="video" controls>
+                            <source src="/static/resized_video.mp4" type="video/mp4">
+                        </video>
+                    </div>
                 </div>
-
             </div>
-
-
         </div>
 
         <footer>
