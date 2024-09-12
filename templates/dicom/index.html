@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block meta %}
+    {% for css in reactjs_assets_css_paths %}
+        <link rel="stylesheet" href="{% static css %}">
+    {% endfor %}
+{% endblock %}
+
+{% block content %}
+    <div id="root"></div>
+    {% for js in reactjs_assets_js_paths %}
+        <script src="{% static js %}"></script>
+    {% endfor %}
+{% endblock %}
