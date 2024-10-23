@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'pydosiomics',
     'dicom',
+    'mfi.apps.MfiConfig'
 ]
 
 MIDDLEWARE = [

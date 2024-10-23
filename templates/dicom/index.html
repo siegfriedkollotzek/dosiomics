@@ -8,7 +8,9 @@
 {% endblock %}
 
 {% block content %}
-    <div id="root"></div>
+    <div class="container">
+        <div id="root"></div>
+    </div>
     {% for js in reactjs_assets_js_paths %}
         <script src="{% static js %}"></script>
     {% endfor %}

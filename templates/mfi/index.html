@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+
+{% block meta %}
+    <style>
+        .body {
+            font-family: 'Arial', sans-serif;
+            display: flex;
+            justify-content: center;
+            margin-top: 100px;
+        }
+
+        .upload-form {
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 10px;
+            font-size: 16px;
+            color: #555;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+
+        button {
+            width: 100%;
+            padding: 10px 0;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+    </style>
+{% endblock %}
+
+{% block content %}
+    <div class="body">
+        <form class="upload-form" method="post" enctype="multipart/form-data">
+            <h2>Upload Your File</h2>
+            <label for="file">Choose a file to upload</label>
+            {% csrf_token %}
+            {{ form.file }}
+            <button type="submit">Upload</button>
+        </form>
+    </div>
+{% endblock %}

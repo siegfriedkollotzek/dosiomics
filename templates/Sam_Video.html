@@ -1,109 +1,10 @@
+{% extends "base.html" %}
 {% load static %}
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dosiomics Python Library</title>
+
+{% block header %}<p>Information Mammakarzinom</p>{% endblock %}
+
+{% block meta %}
     <style>
-        body, h1, h2, h3, p, ul {
-            margin: 0;
-            padding: 0;
-        }
-        ul {
-            list-style: none;
-        }
-        body {
-            font-family: Arial, sans-serif;
-            background-image: url('{% static "background2.png" %}');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            padding: 10px 0;
-            text-align: center;
-        }
-
-        nav {
-            background-color: #444;
-            overflow: hidden;
-        }
-        nav a {
-            float: left;
-            display: block;
-            color: white;
-            text-align: center;
-            padding: 14px 16px;
-            text-decoration: none;
-        }
-        nav a:hover {
-            background-color: #ddd;
-            color: black;
-        }
-
-        .container {
-            width: 80%;
-            margin: 20px auto;
-            background-color: rgba(0, 0, 0, 0.7); /* Black with transparency */
-            padding: 20px;
-            border-radius: 10px; /* Optional rounded corners */
-            color: white; /* Text color */
-            text-align: left;
-        }
-
-        section {
-            margin-bottom: 30px; /* Increase bottom margin for more space */
-            padding: 20px; /* Optional: add padding for spacing inside each section */
-        }
-
-        .wrapper {
-            display: flex;
-            flex-direction: column;
-            min-height: 100vh;
-        }
-
-        .content {
-            flex: 1;
-        }
-
-        footer {
-            background-color: #333;
-            color: white;
-            text-align: center;
-            padding: 10px 0;
-        }
-
-        .image-button {
-            border: none;
-            background: transparent;
-            cursor: pointer;
-            padding: 0;
-        }
-
-        .image-button img {
-            width: 200px; /* Adjust the width as needed */
-            height: auto;
-            display: block;
-        }
-
-
-        .video-container {
-            width: 100%; /* Adjust this to fit your website's layout */
-            max-width: 640px; /* Maximum size */
-            margin: auto; /* Center the container */
-            overflow: hidden; /* Ensures no overflow from the video */
-        }
-        .video-container video {
-            width: 100%; /* Make the video fill the container */
-            height: auto; /* Keep the aspect ratio */
-        }
-
-
         .button-container button {
             background-color: #007bff; /* Blue */
             color: white;
@@ -120,6 +21,7 @@
         .button-container button:hover {
             background-color: #0056b3; /* Darker blue */
         }
+
         .video-and-button-container {
             display: flex;
             flex-direction: row; /* Aligns children (button-container and video-container) in a row */
@@ -132,48 +34,43 @@
             flex-direction: column; /* Aligns buttons vertically */
             gap: 40px; /* Adjust the space between buttons */
         }
+        
+        .button-container {
+            display: flex;
+            justify-content: inherit;
+            align-items: initial;
+            gap: 20px; /* Adjust the space between buttons */
+        }
     </style>
-</head>
-<body>
-    <div class="wrapper">
-        <div class="content">
-            <header>
-                <p>Information Mammakarzinom</p>
-            </header>
+{% endblock %}
 
+{% block content %}
+    <div class="container">
+        <!-- New flex container for video and buttons -->
+        <div class="video-and-button-container">
+            <div class="button-container">
+                <button onclick="setVideoTime(109)">1: Warum empfehlen wir eine Bestrahlung (01:49)</button>
+                <button onclick="setVideoTime(154)">2: Vorbereitungen für die Bestrahlung (02:34)</button>
+                <button onclick="setVideoTime(237)">3: Allgemeiner Ablauf (03:57)</button>
+                <button onclick="setVideoTime(332)">4: Nebenwirkungen (05:32)</button>
+                <button onclick="setVideoTime(599)">5: Nachsorge / wie es weitergeht (09:59)</button>
+            </div>
 
-
-            <div class="container">
-                <!-- New flex container for video and buttons -->
-                <div class="video-and-button-container">
-                    <div class="button-container">
-                        <button onclick="setVideoTime(109)">1: Warum empfehlen wir eine Bestrahlung (01:49)</button>
-                        <button onclick="setVideoTime(154)">2: Vorbereitungen für die Bestrahlung (02:34)</button>
-                        <button onclick="setVideoTime(237)">3: Allgemeiner Ablauf (03:57)</button>
-                        <button onclick="setVideoTime(332)">4: Nebenwirkungen (05:32)</button>
-                        <button onclick="setVideoTime(599)">5: Nachsorge / wie es weitergeht (09:59)</button>
-                    </div>
-
-                    <div class="video-container">
-                        <video id="video" controls>
-                            <source src="/static/resized_video.mp4" type="video/mp4">
-                        </video>
-                    </div>
-                </div>
+            <div class="video-container">
+                <video id="video" controls>
+                    <source src="/static/resized_video.mp4" type="video/mp4">
+                </video>
             </div>
         </div>
-
-        <footer>
-            <p>&copy; 2023 Dosiomics Team</p>
-        </footer>
     </div>
+{% endblock %}
 
-<script>
-    function setVideoTime(seconds) {
+{% block js %}
+    <script>
+      function setVideoTime(seconds) {
         var video = document.getElementById('video');
         video.currentTime = seconds;
         video.play();
-    }
-</script>
-</body>
-</html>
+      }
+    </script>
+{% endblock %}
