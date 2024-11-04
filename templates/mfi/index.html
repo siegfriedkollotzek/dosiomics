@@ -55,6 +55,13 @@
         button:hover {
             background-color: #218838;
         }
+        .form-error {
+            padding: 10px;
+            margin-bottom: 20px;
+            background-color: #f16e6e;
+            border: 1px solid #430000;
+            border-radius: 5px;
+        }
     </style>
 {% endblock %}
 
@@ -62,6 +69,16 @@
     <div class="body">
         <form class="upload-form" method="post" enctype="multipart/form-data">
             <h2>Upload Your File</h2>
+
+            {% if form.errors %}
+                <div class="error">
+                    {% for field, errors in form.errors.items %}
+                        {% for error in errors %}
+                            <p class="form-error">{{ error }}</p>
+                        {% endfor %}
+                    {% endfor %}
+                </div>
+            {% endif %}
             <label for="file">Choose a file to upload</label>
             {% csrf_token %}
             {{ form.file }}

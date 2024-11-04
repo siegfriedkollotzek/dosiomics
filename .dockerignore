@@ -1,0 +1,4 @@
+**/*.pyc
+**/__pycache__/
+pydosiomics/static/resized_video.mp4
+tempfiles/
