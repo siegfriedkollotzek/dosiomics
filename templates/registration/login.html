@@ -1,17 +1,35 @@
 {% extends 'base.html' %}
 
+{% block meta %}
+    <style>
+        input {
+            width: 100%;
+            padding: 6px 10px;
+            margin: 8px 0;
+            box-sizing: border-box;
+        }
+
+        .container {
+            text-align: left;
+            font-size: 18px;
+        }
+
+        p {
+            margin-bottom: 10px;
+        }
+    </style>
+{% endblock %}
+
+
 {% block content %}
 
-    <div class="card mx-auto mt-5 p-3" style="box-shadow: 0 0 15px rgba(0,100,0,0.1); max-width: 25rem;">
-        <div class="card-body">
-            <h4 class="card-title mb-5 text-center">Login</h4>
-            <form method="post">
-                {% csrf_token %}
-                {{ form.as_p }}
-                <input type="submit" class="btn btn-outline-primary w-100 mt-5 btn-lg">
-            </form>
-        </div>
-        <a class="mt-5 mb-3  text-center" href="{% url 'password_reset' %}">Forgot password?</a>
+    <div class="container">
+        <h4 class="card-title mb-5 text-center">Login</h4>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" class="btn btn-outline-primary w-100 mt-5 btn-lg" value="Login">
+        </form>
     </div>
 
 {% endblock %}

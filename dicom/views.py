@@ -123,6 +123,7 @@ def plot_control_point(request, file_uuid, beam: int, control_point: int, x_lim=
     # Step 2: Save the plot to an in-memory buffer
     buffer = BytesIO()
     plt.savefig(buffer, format='png')
+    plt.close()
     buffer.seek(0)
 
     # Step 3: Create an HTTP response with the image content
