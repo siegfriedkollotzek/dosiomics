@@ -14,7 +14,7 @@ COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
 # 📂 EasyOCR-Modelle vorab einbinden (Ordner muss im Projekt liegen!)
-COPY ./easyocr_models /src/easyocr_models
+COPY ./mfi/easyocr_models /src/easyocr_models
 
 # Projektdateien kopieren
 COPY . .
