@@ -39,7 +39,12 @@ class CellAnalyzer:
 
     def detect_scale_bar_and_calculate_size(self):
         """Detects scale bar and calculates pixel size in micrometers using EasyOCR."""
-        reader = easyocr.Reader(['en'], gpu=False, model_storage_directory='/src/easyocr_models')
+        reader = easyocr.Reader(
+            ['en'],
+            gpu=False,
+            model_storage_directory='/src/easyocr_models',
+            download_enabled=False  # ganz wichtig: keine Downloads zulassen!
+        )
         default_scale_bar_length_um = 20
         image = tifffile.imread(self.file_path)
 
