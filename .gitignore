@@ -2,3 +2,5 @@
 node_modules/
 tempfiles/
 .idea/
+/staticfiles/
+db.sqlite3

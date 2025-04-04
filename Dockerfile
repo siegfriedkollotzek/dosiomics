@@ -3,13 +3,23 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /src
 
-RUN apt-get update && apt-get install libgl1 -y
+# Systemabhängigkeiten installieren
+RUN apt-get update && apt-get install -y libgl1
+
+# CPU-Version von Torch installieren
 RUN pip install torch torchvision torchaudio --index-url https://download.pytorch.org/whl/cpu
 
+# Anforderungen installieren
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
+# 📂 EasyOCR-Modelle vorab einbinden (Ordner muss im Projekt liegen!)
+COPY ./easyocr_models /src/easyocr_models
+
+# Projektdateien kopieren
 COPY . .
 
+# Start-Skript setzen
 ADD /entrypoint.sh /etc/entrypoint.sh
+RUN chmod +x /etc/entrypoint.sh
 ENTRYPOINT ["/bin/sh", "/etc/entrypoint.sh"]
