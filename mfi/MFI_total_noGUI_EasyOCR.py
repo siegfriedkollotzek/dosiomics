@@ -27,6 +27,7 @@ class CellAnalyzer:
         self.b_path = None
         fs = FileSystemStorage(location='tempfiles')  # defaults to   MEDIA_ROOT
         filename = fs.save(file_path.name, file_path)
+        print(f"Filename: {filename}")
         self.file_path = str(Path('tempfiles') / filename)
 
     def load_image(self):
