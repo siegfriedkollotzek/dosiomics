@@ -19,6 +19,21 @@
             text-align: center;
         }
 
+        #progressBar {
+            width: 100%;
+            display: none;
+            background-color: #f3f3f3;
+        }
+
+        #progressBarFill {
+            width: 0%;
+            min-width: 30px;
+            height: 20px;
+            background-color: #4caf50;
+            text-align: center;
+            color: white;
+        }
+
         h2 {
             margin-bottom: 20px;
             color: #333;
@@ -55,6 +70,7 @@
         button:hover {
             background-color: #218838;
         }
+
         .form-error {
             padding: 10px;
             margin-bottom: 20px;
@@ -67,7 +83,7 @@
 
 {% block content %}
     <div class="body">
-        <form class="upload-form" method="post" enctype="multipart/form-data">
+        <form class="upload-form" method="post" enctype="multipart/form-data" id="form">
             <h2>Upload Your File</h2>
 
             {% if form.errors %}
@@ -82,7 +98,64 @@
             <label for="file">Choose a file to upload</label>
             {% csrf_token %}
             {{ form.file }}
-            <button type="submit">Upload</button>
+            <button type="submit" id="submitButton">Upload</button>
+
+            <div id="progressBar" style="margin-top: 20px;">
+                <div id="progressBarFill">0%</div>
+            </div>
+            <p id="status"></p>
         </form>
     </div>
+{% endblock %}
+
+{% block js %}
+    <script>
+      const form = document.getElementById('form');
+      const submitButton = document.getElementById('submitButton');
+      const progressBar = document.getElementById('progressBar');
+      const progressBarFill = document.getElementById('progressBarFill');
+      const status = document.getElementById('status');
+
+      form.addEventListener('submit', function (event) {
+        event.preventDefault();
+
+        const fileInput = document.getElementById('id_file');
+        const csrf = document.getElementsByName('csrfmiddlewaretoken')[0];
+        const file = fileInput.files[0];
+        if (!file) return;
+
+        const xhr = new XMLHttpRequest();
+        const formData = new FormData();
+        formData.append('csrfmiddlewaretoken', csrf.value);
+        formData.append('file', file);
+
+        xhr.open('POST', '', true);  // '' assumes same endpoint
+        submitButton.style.display = 'none';
+        progressBar.style.display = "block";
+
+        xhr.upload.addEventListener('progress', function (e) {
+          if (e.lengthComputable) {
+            const percent = Math.round((e.loaded / e.total) * 100);
+            progressBarFill.style.width = percent + '%';
+            progressBarFill.textContent = percent + '%';
+          }
+        });
+
+        xhr.onload = function () {
+          if (xhr.status === 200) {
+            status.textContent = 'Upload successful!';
+            const data = JSON.parse(xhr.responseText)
+            window.location.href = `/mfi/${data.uuid}/`;
+          } else {
+            status.textContent = 'Upload failed.';
+          }
+        };
+
+        xhr.onerror = function () {
+          status.textContent = 'Error during upload.';
+        };
+
+        xhr.send(formData);
+      });
+    </script>
 {% endblock %}

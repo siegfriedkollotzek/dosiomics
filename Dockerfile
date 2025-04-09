@@ -13,9 +13,6 @@ RUN pip install torch torchvision torchaudio --index-url https://download.pytorc
 COPY ./requirements.txt .
 RUN pip install -r requirements.txt
 
-# 📂 EasyOCR-Modelle vorab einbinden (Ordner muss im Projekt liegen!)
-COPY ./mfi/easyocr_models /src/easyocr_models
-
 # Projektdateien kopieren
 COPY . .
 

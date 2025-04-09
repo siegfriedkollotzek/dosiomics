@@ -2,7 +2,8 @@ name: Create and publish a Docker image
 
 on:
     push:
-        branches: [ 'master' ]
+        branches:
+            - '**'  # All branches
 
 env:
     REGISTRY: ghcr.io
@@ -25,9 +26,18 @@ jobs:
                     username: ${{ github.actor }}
                     password: ${{ secrets.GITHUB_TOKEN }}
 
+            -   name: Set image tag
+                id: set-tag
+                run: |
+                    if [[ "${{ github.ref }}" == "refs/heads/master" ]]; then
+                      echo "tag=latest" >> $GITHUB_OUTPUT
+                    else
+                      echo "tag=test" >> $GITHUB_OUTPUT
+                    fi
+
             -   name: Build and push Docker image
                 uses: docker/build-push-action@v5
                 with:
                     context: .
                     push: true
-                    tags: ghcr.io/siegfriedkollotzek/dosiomics
+                    tags: ghcr.io/siegfriedkollotzek/dosiomics:${{ steps.set-tag.outputs.tag }}
