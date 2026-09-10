@@ -4,3 +4,6 @@ tempfiles/
 .idea/
 /staticfiles/
 db.sqlite3
+hf_space/easyocr_models/
+.claude/
+hf_token.txt
